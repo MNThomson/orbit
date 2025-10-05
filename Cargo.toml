@@ -1,0 +1,10 @@
+[package]
+name = "orbit"
+version = "0.1.0"
+edition = "2021"
+license = "ISC"
+description = "orbit"
+homepage = "https://github.com/MNThomson/orbit"
+
+[dependencies]
+hypertext = "0.12.1"
