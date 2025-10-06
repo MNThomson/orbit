@@ -14,7 +14,7 @@ use hypertext::prelude::*;
 fn checkbox<'a>(id: &'a str, text: &'a str, description: Option<&'a str>) -> impl Renderable {
     rsx! {
     <label for=(id) class="inline-flex items-start gap-3">
-        <input type="checkbox" id=(id) class="rounded accent-red-600" />
+        <input type="checkbox" id=(id) name=(id) class="rounded accent-red-600" />
 
         <div>
             <span class="text-gray-700">(text)</span>
@@ -40,7 +40,7 @@ fn checkbox<'a>(id: &'a str, text: &'a str, description: Option<&'a str>) -> imp
 fn toggle<'a>(id: &'a str) -> impl Renderable {
     rsx! {
     <label for=(id) class="group relative block h-8 w-14 rounded-full inset-shadow-xs bg-gray-300 transition-colors has-checked:bg-green-500">
-        <input type="checkbox" id=(id) class="peer sr-only" />
+        <input type="checkbox" id=(id) name=(id) class="peer sr-only" />
 
         <span
         class="absolute inset-y-0 start-0 m-1 grid size-6 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block select-none"
@@ -49,5 +49,21 @@ fn toggle<'a>(id: &'a str) -> impl Renderable {
             <p>"✓"</p>
         </span>
     </label>
+    }
+}
+
+///Submit
+///
+///```
+///# use hypertext::rsx;
+///# use orbit::form::Submit;
+///# fn main(){rsx!{
+/// <Submit text="Submit">
+///# };}
+/// ```
+#[component(pub)]
+fn submit<'a>(text: &'a str) -> impl Renderable {
+    rsx! {
+    <input type="submit" value=(text)>
     }
 }
