@@ -67,3 +67,38 @@ fn submit<'a>(text: &'a str) -> impl Renderable {
     <input type="submit" value=(text)>
     }
 }
+
+///Form
+///
+///```
+///# use hypertext::prelude::*;
+///# use orbit::form::{Form, FormMethod, Toggle};
+///# fn main(){rsx!{
+/// <Form method=(FormMethod::Get) action="/example">
+///   <Toggle id="1" />
+/// </Form>
+///# };}
+/// ```
+#[component(pub)]
+fn form<'a, R: Renderable>(method: FormMethod, action: &'a str, children: &R) -> impl Renderable {
+    rsx! {
+        <form method=(method.to_string()) action=(action)>
+            (children)
+        </form>
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+pub enum FormMethod {
+    Get,
+    Post,
+}
+
+impl std::fmt::Display for FormMethod {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            FormMethod::Get => write!(f, "get"),
+            FormMethod::Post => write!(f, "post"),
+        }
+    }
+}
