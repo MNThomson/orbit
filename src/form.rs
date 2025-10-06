@@ -18,14 +18,40 @@ fn checkbox<'a>(
 ) -> impl Renderable + use<'a> {
     rsx! {
     <label for=(id) class="inline-flex items-start gap-3">
-      <input type="checkbox" id=(id) class="rounded accent-red-600" />
-      <div>
-        <span class="text-gray-700">(text)</span>
+        <input type="checkbox" id=(id) class="rounded accent-red-600" />
 
-        @if description.is_some(){
-        <p class="text-sm text-gray-700">(description)</p>
-        }
-      </div>
+        <div>
+            <span class="text-gray-700">(text)</span>
+
+            @if description.is_some(){
+            <p class="text-sm text-gray-700">(description)</p>
+            }
+        </div>
+    </label>
+    }
+}
+
+///Toggle
+///
+///```
+///# use hypertext::rsx;
+///# use orbit::form::Toggle;
+///# fn main(){rsx!{
+/// <Toggle id="1">
+///# };}
+/// ```
+#[component(pub)]
+fn toggle<'a>(id: &'a str) -> impl Renderable + use<'a> {
+    rsx! {
+    <label for=(id) class="group relative block h-8 w-14 rounded-full inset-shadow-xs bg-gray-300 transition-colors has-checked:bg-green-500">
+        <input type="checkbox" id=(id) class="peer sr-only" />
+
+        <span
+        class="absolute inset-y-0 start-0 m-1 grid size-6 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block select-none"
+        >
+            <p>"✕"</p>
+            <p>"✓"</p>
+        </span>
     </label>
     }
 }
