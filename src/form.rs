@@ -11,11 +11,7 @@ use hypertext::prelude::*;
 ///# };}
 /// ```
 #[component(pub)]
-fn checkbox<'a>(
-    id: &'a str,
-    text: &'a str,
-    description: Option<&'a str>,
-) -> impl Renderable + use<'a> {
+fn checkbox<'a>(id: &'a str, text: &'a str, description: Option<&'a str>) -> impl Renderable {
     rsx! {
     <label for=(id) class="inline-flex items-start gap-3">
         <input type="checkbox" id=(id) class="rounded accent-red-600" />
@@ -41,7 +37,7 @@ fn checkbox<'a>(
 ///# };}
 /// ```
 #[component(pub)]
-fn toggle<'a>(id: &'a str) -> impl Renderable + use<'a> {
+fn toggle<'a>(id: &'a str) -> impl Renderable {
     rsx! {
     <label for=(id) class="group relative block h-8 w-14 rounded-full inset-shadow-xs bg-gray-300 transition-colors has-checked:bg-green-500">
         <input type="checkbox" id=(id) class="peer sr-only" />
